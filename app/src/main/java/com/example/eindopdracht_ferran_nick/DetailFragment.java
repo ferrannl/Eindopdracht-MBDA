@@ -1,7 +1,9 @@
 package com.example.eindopdracht_ferran_nick;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,8 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -55,6 +60,28 @@ public class DetailFragment extends Fragment {
             e.printStackTrace();
         }
         imageView.setImageBitmap(bmp);
+    }
+
+    private void shareImage(View view){
+        View content = findViewById(R.id.full_image_view);
+        content.setDrawingCacheEnabled(true);
+
+        Bitmap bitmap = content.getDrawingCache();
+        File root = Environment.getExternalStorageDirectory();
+        File cachePath = new File(root.getAbsolutePath() + "/DCIM/Camera/image.jpg");
+        try {
+            cachePath.createNewFile();
+            FileOutputStream ostream = new FileOutputStream(cachePath);
+            bitmap.compress(CompressFormat.JPEG, 100, ostream);
+            ostream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/*");
+        share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(cachePath));
+        startActivity(Intent.createChooser(share,"Share via"));
 
     }
 }
