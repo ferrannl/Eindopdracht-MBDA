@@ -2,23 +2,20 @@ package com.example.eindopdracht_ferran_nick;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class DetailFragment extends Fragment {
 
@@ -28,6 +25,7 @@ public class DetailFragment extends Fragment {
     }
 
     ImageView imageView;
+    Bitmap currentImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,45 +40,45 @@ public class DetailFragment extends Fragment {
             new ImageDownloader(imageView).execute(url);
 
         }
+        Button button = (Button) view.findViewById(R.id.share);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                shareImage(view);
+            }
+        });
 
         return view;
     }
 
-    public void setImage(String imgurLink) {
-        URL url = null;
-        try {
-            url = new URL(imgurLink);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        Bitmap bmp = null;
-        try {
-            bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        imageView.setImageBitmap(bmp);
-    }
 
-    private void shareImage(View view){
-        View content = findViewById(R.id.full_image_view);
+    public void shareImage(View view){
+
+        Toast toast=Toast.makeText(view.getContext(),"Hello Javatpoint",Toast.LENGTH_SHORT);
+        toast.setMargin(50,50);
+        toast.show();
+
+        View content = imageView;
         content.setDrawingCacheEnabled(true);
 
         Bitmap bitmap = content.getDrawingCache();
+
+
         File root = Environment.getExternalStorageDirectory();
-        File cachePath = new File(root.getAbsolutePath() + "/DCIM/Camera/image.jpg");
+        File cachePath = new File(root.getAbsolutePath() + "/DCIM/ImageFromAwesomeApp.jpg");
         try {
             cachePath.createNewFile();
             FileOutputStream ostream = new FileOutputStream(cachePath);
-            bitmap.compress(CompressFormat.JPEG, 100, ostream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, ostream);
+            ostream.flush();
             ostream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         Intent share = new Intent(Intent.ACTION_SEND);
+        share.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         share.setType("image/*");
-        share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(cachePath));
+        share.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(view.getContext(), view.getContext().getApplicationContext().getPackageName() + ".provider", cachePath));
         startActivity(Intent.createChooser(share,"Share via"));
 
     }

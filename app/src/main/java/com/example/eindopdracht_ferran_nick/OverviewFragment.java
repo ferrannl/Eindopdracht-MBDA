@@ -41,7 +41,7 @@ public class OverviewFragment extends Fragment {
         List<String> imgurList = new ArrayList<>();
         imgurList.add("https://i.imgur.com/xs8hnaa.jpeg");
         imgurList.add("https://i.imgur.com/nm0JRmI.jpeg");
-        imgurList.add("https://imgur.com/gallery/NukV4vj");
+        imgurList.add("https://web.tue.nl/cursor/internet/jaargang50/cursor33/student/images/s_sleutel3.jpg");
 
         CustomAdapter adapter = new CustomAdapter(imgurList);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
