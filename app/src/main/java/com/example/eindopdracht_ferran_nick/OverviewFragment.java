@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -47,6 +48,14 @@ public class OverviewFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(adapter);
+
+        Button button = (Button) view.findViewById(R.id.addImg);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent menuIntent = new Intent(view.getContext(), UploaderScreen.class);
+                startActivity(menuIntent);
+            }
+        });
 
         return view;
     }

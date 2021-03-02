@@ -18,5 +18,5 @@
         android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
-        android:text="Button" />
+        android:text="Share" />
 </FrameLayout>
