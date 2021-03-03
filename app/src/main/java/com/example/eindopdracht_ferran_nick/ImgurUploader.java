@@ -4,6 +4,8 @@ package com.example.eindopdracht_ferran_nick;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -40,8 +42,14 @@ public class ImgurUploader extends AsyncTask<String, Void, String> {
                 sb.append(output);
             }
             // Response: 400
+            JSONObject jsonObject = new JSONObject(sb.toString());
+            String link = jsonObject.getString("data");
+            JSONObject jsonObject1 = new JSONObject(link);
+            String link1 = jsonObject1.getString("link");
+            return link1;
 
-            Log.e("Response", sb.toString());
+
+
 
         } catch (Exception e) {
             Log.e(e.toString(), "Something with request");

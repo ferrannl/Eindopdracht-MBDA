@@ -16,6 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +31,7 @@ public class OverviewFragment extends Fragment {
         void onItemSelected(String pokemon);
     }
     OnClickListener listener;
+    View view;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -37,12 +44,10 @@ public class OverviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_overview, container, false);
+        view = inflater.inflate(R.layout.fragment_overview, container, false);
 
-        List<String> imgurList = new ArrayList<>();
-        imgurList.add("https://i.imgur.com/xs8hnaa.jpeg");
-        imgurList.add("https://i.imgur.com/nm0JRmI.jpeg");
-        imgurList.add("https://web.tue.nl/cursor/internet/jaargang50/cursor33/student/images/s_sleutel3.jpg");
+        List<String> imgurList = readImgurList();
+
 
         CustomAdapter adapter = new CustomAdapter(imgurList);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
@@ -59,5 +64,39 @@ public class OverviewFragment extends Fragment {
 
         return view;
     }
+    public List<String> readImgurList(){
 
+        String yourFilePath = view.getContext().getFilesDir() + "/imgurs/" + "imgur-links.txt";
+        File yourFile = new File( yourFilePath );
+        List<String> imgurList = new ArrayList<>();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        BufferedReader in = null;
+
+        try {
+            in = new BufferedReader(new FileReader(yourFile));
+            while ((line = in.readLine()) != null) stringBuilder.append(line);
+
+        } catch (FileNotFoundException e) {
+            imgurList.add("You have no links yet!");
+
+        } catch (IOException e) {
+            return null;
+        }
+
+
+
+
+        String[] linkList = stringBuilder.toString().split(",");
+
+        for (String link : linkList) {
+            imgurList.add(link);
+        }
+
+
+
+
+        return imgurList;
+    }
 }

@@ -11,20 +11,20 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="91dp"
+        android:gravity="bottom|center_horizontal"
         android:text="Upload a new image below!"
+
         android:textSize="30sp" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:srcCompat="@tools:sample/avatars" />
+
 
     <Button
         android:id="@+id/choose"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+
         android:text="Button" />
 </FrameLayout>
