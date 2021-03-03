@@ -1,9 +1,12 @@
 package com.example.eindopdracht_ferran_nick;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -22,6 +25,14 @@ public class DetailFragmentUploaderScreen extends Fragment {
             TextView textView = (TextView) view.findViewById(R.id.resultPost);
             textView.setText(url);
         }
+        Button button = (Button) view.findViewById(R.id.ToMain);
+        button.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(view.getContext(), MainActivity.class));
+            }
+        });
 
         return view;
     }
