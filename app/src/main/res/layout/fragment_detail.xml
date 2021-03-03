@@ -10,14 +10,17 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="300px"
-        android:layout_height="300px"
+        android:layout_width="match_parent"
+        android:layout_height="331dp"
+        android:padding="10dp"
         tools:src="@tools:sample/backgrounds/scenic" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/share"
         android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:onClick="shareImage"
-        android:text="Share" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        app:srcCompat="@drawable/share_icon"
+        android:layout_margin="16dp" />
+
 </FrameLayout>

@@ -18,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -41,7 +43,7 @@ View view;
 
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_overview_uploader_screen, container, false);
-        Button button = view.findViewById(R.id.choose);
+        FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.choose);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

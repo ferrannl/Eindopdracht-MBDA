@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/overviewFragmentUploaderScreen"
         class="com.example.eindopdracht_ferran_nick.OverviewFragmentUploaderScreen"
-        android:layout_width="692dp"
+        android:layout_width="match_parent"
         android:layout_height="574dp"
         android:layout_weight="1"
 
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/detailFragmentUploaderScreen"
         class="com.example.eindopdracht_ferran_nick.DetailFragmentUploaderScreen"
-        android:layout_width="674dp"
+        android:layout_width="match_parent"
         android:layout_height="617dp"
         android:layout_weight="1"
 

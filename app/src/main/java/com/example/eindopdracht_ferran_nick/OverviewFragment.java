@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -54,7 +56,7 @@ public class OverviewFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(adapter);
 
-        Button button = (Button) view.findViewById(R.id.addImg);
+        FloatingActionButton button = (FloatingActionButton ) view.findViewById(R.id.addImg);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent menuIntent = new Intent(view.getContext(), UploaderScreen.class);

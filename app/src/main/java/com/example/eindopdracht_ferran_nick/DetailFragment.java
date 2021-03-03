@@ -17,6 +17,8 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -50,7 +52,7 @@ public class DetailFragment extends Fragment {
             new ImageDownloader(imageView).execute(url);
 
         }
-        Button button = (Button) view.findViewById(R.id.share);
+        FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.share);
         button.setOnClickListener(null);
         Log.d("outside click",url);
         button.setOnClickListener( new View.OnClickListener() {
@@ -67,7 +69,7 @@ public class DetailFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        Button button = (Button) view.findViewById(R.id.share);
+        FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.share);
         button.setOnClickListener(null);
         super.onDestroyView();
     }

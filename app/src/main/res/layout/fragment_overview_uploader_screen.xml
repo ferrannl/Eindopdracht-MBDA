@@ -11,20 +11,19 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="91dp"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
         android:gravity="bottom|center_horizontal"
         android:text="Upload a new image below!"
 
         android:textSize="30sp" />
 
-
-
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/choose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:layout_gravity="end|bottom"
+        app:srcCompat="@drawable/ic_my_icon"
+        android:layout_margin="16dp" />
 
-        android:text="Button" />
 </FrameLayout>
