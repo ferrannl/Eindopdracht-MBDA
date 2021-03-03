@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class DetailFragmentUploaderScreen extends Fragment {
 
     @Override
@@ -25,7 +27,7 @@ public class DetailFragmentUploaderScreen extends Fragment {
             TextView textView = (TextView) view.findViewById(R.id.resultPost);
             textView.setText(url);
         }
-        Button button = (Button) view.findViewById(R.id.ToMain);
+        FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.ToMain);
         button.setOnClickListener( new View.OnClickListener() {
 
             @Override
