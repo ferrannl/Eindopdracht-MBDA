@@ -37,6 +37,7 @@ public class CustomAdapter extends RecyclerView.Adapter<ImgurViewHolder> {
             public void onClick(View view) {
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 Fragment myFragment = new DetailFragment();
+                myFragment.setRetainInstance(true);
                 myFragment.setArguments(new Bundle());
                 myFragment.getArguments().putString("url", ((TextView) view.findViewById(R.id.textView)).getText().toString());
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.detailFragment, myFragment).addToBackStack(null).commit();
@@ -50,6 +51,7 @@ public class CustomAdapter extends RecyclerView.Adapter<ImgurViewHolder> {
         String url = imgurList.get(position);
         holder.textView.setText(url);
     }
+
 
     @Override
     public int getItemCount() {
