@@ -4,24 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailFragment"
-    >
+    tools:context=".OverviewFragmentUploaderScreen">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ImageView
-        android:id="@+id/imageView"
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="331dp"
-        android:padding="10dp"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        android:layout_height="59dp"
+        android:gravity="bottom|center_horizontal"
+        android:text="Upload a new image below!"
+
+        android:textSize="30sp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/share"
+        android:id="@+id/choose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        app:srcCompat="@drawable/share_icon"
+        app:srcCompat="@drawable/ic_my_icon"
         android:layout_margin="16dp" />
 
 </FrameLayout>
