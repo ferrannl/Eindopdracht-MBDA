@@ -29,6 +29,10 @@ import java.util.List;
 
 public class OverviewFragment extends Fragment {
 
+    public OverviewFragment() {
+        // Required empty public constructor
+    }
+
     interface OnClickListener{
         void onItemSelected(String pokemon);
     }
@@ -38,9 +42,7 @@ public class OverviewFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-    public OverviewFragment() {
-        // Required empty public constructor
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

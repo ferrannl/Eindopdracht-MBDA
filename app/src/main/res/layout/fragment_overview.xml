@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_toRightOf="@id/recyclerView"
-    tools:context=".OverviewFragment">
+    tools:context=".OverviewFragment"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
 
