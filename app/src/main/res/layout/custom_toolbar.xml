@@ -24,6 +24,7 @@
                 android:layout_height="36dp"
                 android:src="@drawable/home_icon" />
 
+
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
@@ -33,6 +34,11 @@
                 android:textColor="#fff"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/settings_icon"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/settings_icon" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.appcompat.widget.Toolbar>

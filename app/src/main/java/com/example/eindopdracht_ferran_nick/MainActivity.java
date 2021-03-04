@@ -37,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(v.getContext(), MainActivity.class));
             }
         });
+        ImageView imageView1 = (ImageView) findViewById(R.id.settings_icon);
+        imageView1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), SettingsScreen.class));
+            }
+        });
     }
+
 
 }

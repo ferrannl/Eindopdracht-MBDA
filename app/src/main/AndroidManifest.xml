@@ -16,6 +16,9 @@
         <activity android:name=".UploaderScreen"
             android:configChanges="keyboardHidden|orientation|screenSize"
             ></activity>
+        <activity android:name=".SettingsScreen"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            ></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
