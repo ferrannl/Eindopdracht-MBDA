@@ -31,6 +31,7 @@ public class UploaderScreen extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                finish();
                 startActivity(new Intent(v.getContext(), MainActivity.class));
             }
         });
@@ -39,6 +40,7 @@ public class UploaderScreen extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                finish();
                 startActivity(new Intent(v.getContext(), SettingsScreen.class));
             }
         });

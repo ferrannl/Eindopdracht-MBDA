@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             }
             writeFileOnInternalStorage(sb.toString());
             finish();
-            startActivity(intent);
+            startActivity(new Intent(this, MainActivity.class));
         }
         SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         String prefference = sharedpreferences.getString("check", "empty");
@@ -69,19 +69,12 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setCustomView(R.layout.custom_toolbar);
 
         }
-        ImageView imageView = (ImageView) findViewById(R.id.home_icon);
-                imageView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), MainActivity.class));
-            }
-        });
         ImageView imageView1 = (ImageView) findViewById(R.id.settings_icon);
         imageView1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                finish();
                 startActivity(new Intent(v.getContext(), SettingsScreen.class));
             }
         });
