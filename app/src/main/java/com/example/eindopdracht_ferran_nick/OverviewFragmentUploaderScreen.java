@@ -103,8 +103,6 @@ View view;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
             }
             else{
             }
@@ -130,19 +128,11 @@ View view;
         } catch (IOException e) {
             return null;
         }
-
-
-
-
             String[] linkList = stringBuilder.toString().split(",");
 
             for (String link : linkList) {
                 imgurList.add(link);
             }
-
-
-
-
         return imgurList;
     }
     public void writeFileOnInternalStorage(String sBody){

@@ -89,18 +89,12 @@ public class OverviewFragment extends Fragment {
             return null;
         }
 
-
-
-
         String[] linkList = stringBuilder.toString().split(",");
 
         for (String link : linkList) {
             imgurList.add(link);
         }
-
-
-
-
         return imgurList;
     }
+
 }

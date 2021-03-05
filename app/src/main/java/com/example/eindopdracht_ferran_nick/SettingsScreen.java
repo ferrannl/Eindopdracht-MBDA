@@ -1,8 +1,14 @@
 package com.example.eindopdracht_ferran_nick;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
+import android.preference.PreferenceActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -18,10 +24,25 @@ public class SettingsScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings_screen);
-        requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE}, 1);
+
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.custom_toolbar);
+        SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        String prefference = sharedpreferences.getString("check", "empty");
+        sharedpreferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
+        if(prefference == "true"){
+            getSupportActionBar().setCustomView(R.layout.custom_toolbar2);
+
+        } else{
+            getSupportActionBar().setCustomView(R.layout.custom_toolbar);
+
+        }
         ImageView imageView = (ImageView) findViewById(R.id.home_icon);
         imageView.setOnClickListener(new View.OnClickListener() {
 
@@ -30,14 +51,11 @@ public class SettingsScreen extends AppCompatActivity {
                 startActivity(new Intent(v.getContext(), MainActivity.class));
             }
         });
-        ImageView imageView1 = (ImageView) findViewById(R.id.settings_icon);
-        imageView1.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), SettingsScreen.class));
-            }
-        });
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
     }
+    @Override
+    public void onBackPressed() {
 
+    }
 }
