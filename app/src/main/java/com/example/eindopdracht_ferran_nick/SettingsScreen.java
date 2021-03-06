@@ -31,10 +31,15 @@ public class SettingsScreen extends AppCompatActivity {
         String prefference = sharedpreferences.getString("check", "empty");
         sharedpreferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
-            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                Intent intent = new Intent(SettingsScreen.this, SettingsScreen.class);
-                startActivity(intent);
-                finish();
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences1, String key) {
+                if(sharedPreferences1.getString("check","empty") == "true"){
+                    getSupportActionBar().setCustomView(R.layout.custom_toolbar2);
+
+                } else{
+                    getSupportActionBar().setCustomView(R.layout.custom_toolbar);
+
+                }
+
             }
         });
         if(prefference == "true"){

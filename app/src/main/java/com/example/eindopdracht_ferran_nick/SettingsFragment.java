@@ -18,7 +18,7 @@ public class SettingsFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.activity_settings_screen);
         CheckBoxPreference checkbox = (CheckBoxPreference) findPreference("checkBox");
-        SharedPreferences sharedpreferences = this.getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        SharedPreferences sharedpreferences = getActivity().getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         checkbox.setOnPreferenceChangeListener(new CheckBoxPreference.OnPreferenceChangeListener() {
             public boolean onPreferenceChange (final Preference preference, final Object newValue){
                 SharedPreferences.Editor editor = sharedpreferences.edit();
