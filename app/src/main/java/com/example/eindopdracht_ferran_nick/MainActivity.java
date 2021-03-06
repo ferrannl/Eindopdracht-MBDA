@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             in = new BufferedReader(new FileReader(yourFile));
             while ((line = in.readLine()) != null) stringBuilder.append(line);
-            in.close();
+
 
         } catch (FileNotFoundException e) {
             imgurList.add("You have no links yet!");
@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
         return imgurList;
     }
 
