@@ -126,11 +126,13 @@ View view;
             for (String link : linkList) {
                 imgurList.add(link);
             }
-        try {
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            if(in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         return imgurList;
     }
     public void writeFileOnInternalStorage(String message){

@@ -94,7 +94,13 @@ public class MainActivity extends AppCompatActivity {
         for (String link : linkList) {
             imgurList.add(link);
         }
-
+        if(in != null) {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return imgurList;
     }
 
