@@ -39,6 +39,16 @@ public class SettingsScreen extends AppCompatActivity {
                     getSupportActionBar().setCustomView(R.layout.custom_toolbar);
 
                 }
+                ImageView imageView = (ImageView) findViewById(R.id.home_icon);
+                imageView.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(SettingsScreen.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
 
             }
         });
