@@ -31,8 +31,10 @@ public class UploaderScreen extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                finish();
-                startActivity(new Intent(v.getContext(), MainActivity.class));
+
+                Intent intent = new Intent(UploaderScreen.this, MainActivity.class);
+                startActivity(intent);
+
             }
         });
         ImageView imageView1 = (ImageView) findViewById(R.id.settings_icon);
@@ -40,8 +42,8 @@ public class UploaderScreen extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                finish();
-                startActivity(new Intent(v.getContext(), SettingsScreen.class));
+                Intent intent = new Intent(UploaderScreen.this, SettingsScreen.class);
+                startActivity(intent);
             }
         });
     }

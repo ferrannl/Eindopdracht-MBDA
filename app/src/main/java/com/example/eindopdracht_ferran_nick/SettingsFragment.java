@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.view.View;
 
 import androidx.annotation.RequiresApi;
 

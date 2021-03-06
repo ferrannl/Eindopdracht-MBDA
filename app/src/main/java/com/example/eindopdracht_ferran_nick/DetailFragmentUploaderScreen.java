@@ -32,7 +32,8 @@ public class DetailFragmentUploaderScreen extends Fragment {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(view.getContext(), MainActivity.class));
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 

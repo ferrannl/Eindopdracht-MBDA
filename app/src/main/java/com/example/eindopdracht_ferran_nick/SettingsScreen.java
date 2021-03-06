@@ -24,6 +24,7 @@ public class SettingsScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings_screen);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
@@ -31,8 +32,7 @@ public class SettingsScreen extends AppCompatActivity {
         sharedpreferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                Intent intent = getIntent();
-                finish();
+                Intent intent = new Intent(SettingsScreen.this, SettingsScreen.class);
                 startActivity(intent);
             }
         });
@@ -48,8 +48,8 @@ public class SettingsScreen extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                finish();
-                startActivity(new Intent(v.getContext(), MainActivity.class));
+                Intent intent = new Intent(SettingsScreen.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

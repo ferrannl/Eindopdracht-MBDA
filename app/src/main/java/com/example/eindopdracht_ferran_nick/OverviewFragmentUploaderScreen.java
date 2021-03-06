@@ -62,42 +62,23 @@ View view;
 
         if(requestCode == 0)
         {
-            if(data != null)
+            if(data.getExtras() != null)
             {
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                byte[] byteArray = byteArrayOutputStream .toByteArray();
-                String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                ImgurUploader downloadInfoOfWeather = new ImgurUploader();
 
+                ImgurUploader imgurUploader = new ImgurUploader();
                 String url = "https://api.imgur.com/3/image";
-                String body = encoded;
-                Log.e("Response1", encoded);
-
+                String body = convertImgToBase64(photo);
                 String result = "";
                 try {
-                    result = downloadInfoOfWeather.execute(url, body).get();
+                    result = imgurUploader.execute(url, body).get();
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     Fragment myFragment = new DetailFragmentUploaderScreen();
                     myFragment.setArguments(new Bundle());
                     myFragment.getArguments().putString("url", result);
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.detailFragmentUploaderScreen, myFragment).addToBackStack(null).commit();
-                    List<String> linkList = readImgurList();
-                    linkList.add(result);
-                    String linkListString = "";
-                    if(linkList.get(0) != "You have no links yet!") {
-                        for (String link : linkList) {
-                            linkListString = linkListString + link + ",";
-                        }
-                    }else{
-                        linkListString = result;
-                    }
-                    StringBuffer sb = new StringBuffer(linkListString);
-                    if(linkList.get(0) != "You have no links yet!") {
-                        sb.deleteCharAt(sb.length() - 1);
-                    }
-                    writeFileOnInternalStorage(sb.toString());
+
+                    writeFileOnInternalStorage(result);
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -107,6 +88,18 @@ View view;
             else{
             }
         }
+    }
+    public String convertImgToBase64(Bitmap bitmap){
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream .toByteArray();
+        try {
+            byteArrayOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
     public List<String> readImgurList(){
 
@@ -133,9 +126,29 @@ View view;
             for (String link : linkList) {
                 imgurList.add(link);
             }
+        try {
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return imgurList;
     }
-    public void writeFileOnInternalStorage(String sBody){
+    public void writeFileOnInternalStorage(String message){
+        List<String> linkList = readImgurList();
+        linkList.add(message);
+        String linkListString = "";
+        if(linkList.get(0) != "You have no links yet!") {
+            for (String link : linkList) {
+                linkListString = linkListString + link + ",";
+            }
+        }else{
+            linkListString = message;
+        }
+        StringBuffer sb = new StringBuffer(linkListString);
+        if(linkList.get(0) != "You have no links yet!") {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        String sBody = sb.toString();
         String sFileName = "imgur-links.txt";
         Context mcoContext = view.getContext();
         File dir = new File(mcoContext.getFilesDir(), "imgurs");

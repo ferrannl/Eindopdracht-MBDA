@@ -45,7 +45,7 @@ public class DetailFragment extends Fragment {
         imageView = view.findViewById(R.id.imageView);
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache(true);
-        url = "1";
+        url = "";
         if(getArguments() != null){
             url = getArguments().getString("url");
 
@@ -54,12 +54,10 @@ public class DetailFragment extends Fragment {
         }
         FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.share);
         button.setOnClickListener(null);
-        Log.d("outside click",url);
         button.setOnClickListener( new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Log.d("inside click",url);
                 shareImage(view);
             }
         });

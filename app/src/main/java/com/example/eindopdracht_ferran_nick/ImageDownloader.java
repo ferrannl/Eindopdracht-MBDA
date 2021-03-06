@@ -28,8 +28,14 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
             InputStream in = new java.net.URL(urldisplay).openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
             in.close();
-        } catch (Exception e) {
-            Log.e("Error", e.getMessage());
+        } catch (FileNotFoundException e) {
+        return null;
+        }
+        catch (Exception e) {
+            Log.e("Error-Uploader", e.toString());
+            if(e.getMessage().contains("no protocol") || e.getMessage().toLowerCase().contains("unable to resolve host") || e.toString() == "java.io.FileNotFoundException: " + urldisplay){
+                return null;
+            }
             e.printStackTrace();
         }
 
@@ -37,7 +43,9 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap result) {
+        if(result != null){
+            bmImage.setImageBitmap(result);
 
-        bmImage.setImageBitmap(result);
+        }
     }
 }

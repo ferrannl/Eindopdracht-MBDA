@@ -42,21 +42,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(Intent.EXTRA_TEXT);
         if(message != null){
-            List<String> linkList = readImgurList();
-            linkList.add(message);
-            String linkListString = "";
-            if(linkList.get(0) != "You have no links yet!") {
-                for (String link : linkList) {
-                    linkListString = linkListString + link + ",";
-                }
-            }else{
-                linkListString = message;
-            }
-            StringBuffer sb = new StringBuffer(linkListString);
-            if(linkList.get(0) != "You have no links yet!") {
-                sb.deleteCharAt(sb.length() - 1);
-            }
-            writeFileOnInternalStorage(sb.toString());
+
+            writeFileOnInternalStorage(message);
             finish();
             startActivity(new Intent(this, MainActivity.class));
         }
@@ -74,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                finish();
-                startActivity(new Intent(v.getContext(), SettingsScreen.class));
+                Intent intent = new Intent(MainActivity.this, SettingsScreen.class);
+                startActivity(intent);
             }
         });
 
@@ -94,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             in = new BufferedReader(new FileReader(yourFile));
             while ((line = in.readLine()) != null) stringBuilder.append(line);
+            in.close();
 
         } catch (FileNotFoundException e) {
             imgurList.add("You have no links yet!");
@@ -106,10 +94,26 @@ public class MainActivity extends AppCompatActivity {
         for (String link : linkList) {
             imgurList.add(link);
         }
+
         return imgurList;
     }
 
-    public void writeFileOnInternalStorage(String sBody){
+    public void writeFileOnInternalStorage(String message){
+        List<String> linkList = readImgurList();
+        linkList.add(message);
+        String linkListString = "";
+        if(linkList.get(0) != "You have no links yet!") {
+            for (String link : linkList) {
+                linkListString = linkListString + link + ",";
+            }
+        }else{
+            linkListString = message;
+        }
+        StringBuffer sb = new StringBuffer(linkListString);
+        if(linkList.get(0) != "You have no links yet!") {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        String sBody = sb.toString();
         String sFileName = "imgur-links.txt";
         Context mcoContext = getApplicationContext();
         File dir = new File(mcoContext.getFilesDir(), "imgurs");
@@ -126,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
     @Override
