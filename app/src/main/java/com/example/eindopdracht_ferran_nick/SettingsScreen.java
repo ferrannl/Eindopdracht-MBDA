@@ -34,6 +34,7 @@ public class SettingsScreen extends AppCompatActivity {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                 Intent intent = new Intent(SettingsScreen.this, SettingsScreen.class);
                 startActivity(intent);
+                finish();
             }
         });
         if(prefference == "true"){
@@ -50,6 +51,7 @@ public class SettingsScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SettingsScreen.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

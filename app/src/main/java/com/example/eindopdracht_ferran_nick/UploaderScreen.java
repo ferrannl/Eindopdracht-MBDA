@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class UploaderScreen extends AppCompatActivity {
 
     @Override
@@ -34,6 +36,8 @@ public class UploaderScreen extends AppCompatActivity {
 
                 Intent intent = new Intent(UploaderScreen.this, MainActivity.class);
                 startActivity(intent);
+                finish();
+
 
             }
         });
@@ -44,6 +48,19 @@ public class UploaderScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UploaderScreen.this, SettingsScreen.class);
                 startActivity(intent);
+                finish();
+
+            }
+        });
+        FloatingActionButton button = (FloatingActionButton) findViewById(R.id.ToMain);
+        button.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UploaderScreen.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+
             }
         });
     }

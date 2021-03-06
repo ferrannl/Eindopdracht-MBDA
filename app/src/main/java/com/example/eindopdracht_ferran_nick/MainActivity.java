@@ -44,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
         if(message != null){
 
             writeFileOnInternalStorage(message);
-            finish();
+
             startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
         SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         String prefference = sharedpreferences.getString("check", "empty");
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SettingsScreen.class);
                 startActivity(intent);
+                finish();
             }
         });
 

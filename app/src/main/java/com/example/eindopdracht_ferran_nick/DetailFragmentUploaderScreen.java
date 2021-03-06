@@ -27,15 +27,7 @@ public class DetailFragmentUploaderScreen extends Fragment {
             TextView textView = (TextView) view.findViewById(R.id.resultPost);
             textView.setText(url);
         }
-        FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.ToMain);
-        button.setOnClickListener( new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         return view;
     }
