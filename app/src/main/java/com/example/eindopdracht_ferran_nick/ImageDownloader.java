@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 
 
 public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
@@ -30,10 +31,12 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
             in.close();
         } catch (FileNotFoundException e) {
         return null;
+        } catch(MalformedURLException e){
+            return null;
         }
         catch (Exception e) {
             Log.e("Error-Uploader", e.toString());
-            if(e.getMessage().contains("no protocol") || e.getMessage().toLowerCase().contains("unable to resolve host") || e.toString() == "java.io.FileNotFoundException: " + urldisplay){
+            if(e.getMessage().contains("no protocol") || e.getMessage().toLowerCase().contains("unable to resolve host") || e.toString() == "java.net.MalformedURLException: " + urldisplay || e.toString() == "java.io.FileNotFoundException: " + urldisplay){
                 return null;
             }
             e.printStackTrace();
